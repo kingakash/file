@@ -1,0 +1,20 @@
+#include<stdio.h>
+void main()
+{ int a[25],i,item,n;
+printf("enter n:");
+scanf("%d",&n);
+  printf("enter the numbers:\n");
+  for(i=0;i<n;i++)
+  scanf("%d",&a[i]);
+  printf("\nenter item:");
+  scanf("%d",&item);
+  
+for(i=0;i<n;i++)
+{ if(a[i]==item)
+    {printf("item at:%d",i);
+          break;}             }  
+    
+   if(a[i]!=item)
+    printf("item not");
+    }
+

@@ -1,0 +1,97 @@
+#include<stdio.h>
+#define MAXSIZE 10
+void push();
+void pop();
+void display();
+int top=-1,item,stack[MAXSIZE];
+int main()
+{ int choice;
+char ch;
+do{
+    printf("\n1. push");
+    printf("\n2. pop");
+    printf("\n3. display");
+    printf("\nenter ur choice:");
+    scanf("%d",&choice);
+    switch(choice)
+    
+    {case 1: push();
+    break;
+    case 2: pop();
+    break;
+    case 3: display();
+    break;
+    default: printf("entered wrong choice");
+    break;
+}
+printf("\ndo u want 2 continue");
+scanf("%c",&ch);
+scanf("%c",&ch);
+}
+while(ch=='y');
+return 0;
+}
+int isempty()
+{ if(top==-1)
+return 1;
+else 
+return 0;
+}
+int isfull()
+{ if(top==MAXSIZE-1)
+return 1;
+else
+return 0;
+}
+void push()
+{
+    printf("enter the item");
+    scanf("%d",&item);
+    if(!isfull())
+    {top=top+1;
+    stack[top]=item;
+    }
+    else
+    {printf("could not insert data ,stack is overflow.\n");}
+}
+void pop()
+{ if(!isempty())
+{top=top-1;}
+else{printf("stack is empty.underflow condition!\n");
+}}
+void display()
+{int i;
+for(i=top;i>=0;i--)
+
+{printf("\n%d",stack[i]);
+}}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

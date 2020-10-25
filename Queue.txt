@@ -1,0 +1,90 @@
+#include <stdio.h>
+#define MAXSIZE 5
+void enqueue();
+void dequeue();
+void display();
+int front=-1,rear=-1; queue[MAXSIZE];
+int main()
+{
+   int choice;
+    char ch;
+    do{
+        printf("\n1. Insert in Queue");
+        printf("\n2. Delete from Queue");
+        printf("\n3. DISPLAY");
+        printf("\nENTER THE CHOICE:");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1: enqueue();
+            break;
+            case 2: dequeue();
+            break;
+            case 3: display();
+            break;
+            default: printf("wrong choice");
+            break;
+
+        }
+        printf("\ndo u want to continue");
+        scanf("%c",&ch);
+        scanf("%c",&ch);
+     }
+     while(ch=='y');
+    return 0;
+
+}
+
+
+
+void enqueue()
+{
+int item;
+printf("Inset the element in queue : ");
+scanf("%d", &item);
+if (rear == MAXSIZE - 1)
+    printf("Queue Overflow \n");
+else if (front == -1 && rear == -1 ) 	//If queue is initially empty
+    {	front = rear = 0;
+        queue[rear] = item;}
+        else
+{	
+    rear = rear + 1;
+    queue[rear] = item;
+}
+}
+void dequeue()
+{
+    if (front == - 1)
+    {
+        printf("Queue Underflow \n");
+    }
+   else if(front==rear)
+         {
+        	front = rear = -1;
+         }
+    else
+    {
+        printf("Deleted Element is : %d\n", queue[front]);
+        front = front + 1;
+    }
+}
+        
+    void display()
+    {
+    int i;
+    if(front==-1 && rear==-1)
+    {
+        printf("The queue is Empty\n");
+    }
+    else
+   {
+        for(i= front; i<rear;i++)
+          {
+                printf("%d ",queue[i]);
+          }
+	 printf("%d ",queue[i]);
+   }
+}
+
+

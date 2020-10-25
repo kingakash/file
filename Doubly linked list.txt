@@ -1,0 +1,200 @@
+#include<stdio.h> 
+#include<malloc.h>
+struct node
+{
+int data; 
+struct node *next;
+struct node *prev;
+};
+struct node *start=NULL; 
+struct node *last;
+void create(); 
+void display_forward(); 
+void display_backward(); 
+void insert_begin(); 
+void insert_last(); 
+void insert_after_specific(); 
+void delete_first(); 
+void delete_last(); 
+void delete_specific(); 
+void exit();
+void main() 
+{int ch; 
+char choice; 
+while(1) 
+{printf("\nEnter the Doubly linked list operation\n"); 
+printf("1.Create List\n"); 
+printf("2.Display Forward\n"); 
+printf("3.Display backward\n"); 
+printf("4. insert at begin\n"); 
+printf("5. insert after specific\n"); 
+printf("6. insert at last\n"); 
+printf("7.delete first\n"); 
+printf("8.delete last\n"); 
+printf("9.delete specific\n"); 
+printf("10. Exit\n"); 
+printf("Enter your choice: ");
+scanf("%d",&ch); 
+switch(ch) 
+{case 1: create(); 
+break; 
+case 2: display_forward(); 
+break; 
+case 3: display_backward(); 
+break;
+case 4: insert_begin(); 
+break; 
+case 5: insert_after_specific(); 
+break; 
+case 6: insert_last(); 
+break; 
+case 7: delete_first(); 
+break; 
+case 8: delete_last(); 
+break; 
+case 9: delete_specific(); 
+break; 
+case 10: exit(1); 
+         default: printf("lnvalid input \n");
+}
+}
+}
+
+void create() 
+{char ch;
+struct node *temp=(struct node *)malloc(sizeof(struct node)); 
+printf("Enter node data"); 
+scanf("%d",&temp->data); 
+temp->prev=temp->next=NULL; 
+start=last=temp; 
+do 
+{
+struct node *temp1=(struct node *)malloc(sizeof(struct node)); 
+printf("Enter next node data"); 
+scanf("%d",&temp1->data); 
+last->next=temp1; 
+temp1->prev=last; 
+last=temp1;
+printf(" press y for more node"); 
+scanf("%c",&ch);
+scanf("%c",&ch);
+}
+while(ch=='y');
+last->next=NULL; 
+}
+
+void display_forward()
+{struct node *temp = start; 
+if(start == NULL) 
+{printf("No nodes in the list"); }
+else {
+while(temp!=NULL) 
+{
+printf("%d->",temp -> data); 
+temp = temp -> next; 
+
+}
+
+}
+}
+
+void display_backward()
+{struct node *temp = last; 
+if(start == NULL) 
+{printf("No nodes in the list"); }
+else {
+while(temp!=NULL) 
+{
+printf("%d->",temp -> data); 
+temp = temp ->prev; 
+}
+
+}
+}
+
+void insert_begin() 
+{struct node *temp=(struct node *)malloc(sizeof(struct node)); 
+printf("Enter node data"); 
+scanf("%d", &temp->data); 
+if(start==NULL)
+{temp->prev=temp->next=NULL;
+start=last=temp;} 
+else 
+{start->prev=temp;
+temp->next=start;
+temp->prev=NULL;
+ start=temp;
+ 
+}}
+
+void insert_after_specific() 
+{int x; 
+struct node *temp = start; 
+struct node *temp1=(struct node *)malloc(sizeof(struct node)); 
+printf("enter the data which do u want to insert"); 
+scanf("%d",&temp1->data); 
+printf("enter node after which do u want to insert"); 
+scanf("%d",&x); 
+while(temp->data!=x) 
+{temp=temp->next; }
+temp1->next=temp->next; 
+temp->next->prev=temp1; 
+temp->next=temp1;
+temp->prev=temp; 
+}
+
+void insert_last() 
+{struct node *temp=(struct node *)malloc(sizeof(struct node)); 
+printf( "Enter node data"); 
+scanf("%d",&temp->data); 
+if(start==NULL) 
+{temp->prev=temp->next=NULL;
+start=last=temp; } 
+else 
+{ struct node *last=start; 
+last->next=temp;
+temp->prev=last;
+temp->next=NULL;
+last=temp;
+}
+}
+
+void delete_first()
+{ struct node*temp=start;
+if(start==NULL)
+{printf("empty list");
+}
+else if(start->next==NULL)
+{start=last=NULL;}
+else
+{start=start->next;
+start->prev=NULL;}
+free(temp);
+//last->next=start;
+}
+
+void delete_specific() 
+{int x; 
+struct node *temp=start; 
+printf("enter the node do u want to delete"); 
+scanf("%d",&x); 
+while(temp->data!=x) 
+{temp=temp->next;}
+
+temp->prev->next=temp->next;
+temp->next->prev=temp->prev; 
+free(temp);
+}
+
+void delete_last() 
+{struct node*temp=last;
+if(start==NULL)
+{printf("list empty");}
+else if(start->next==NULL)
+{start=last=NULL;}
+else
+{last=last->prev; 
+last->next=NULL;} 
+free(temp); 
+}
+
